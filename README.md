@@ -24,10 +24,14 @@ mkdir -p out && MAKEFUN_OUTPUT_DIR=out python3 main.py
 # writes out/entry.png (1024x1024 PNG, under 1 MiB)
 ```
 
-`main.py` (Python 3.13, Pillow only) draws the whole page with
-`PIL.ImageDraw` — no network, no randomness, no timestamps, no
-external files — so two runs produce byte-identical output. In the
-grader, `MAKEFUN_OUTPUT_DIR` is unset and the image is written to
+`main.py` (Python 3.13, standard library only) copies `entry.png`
+to the output directory — no network, no third-party packages,
+no fonts, no randomness, no timestamps — so it runs the same in
+the grader's sandbox as anywhere else, and two runs produce
+byte-identical output. The image itself is drawn by `draw.py`
+(Pillow, run where Pillow and the DejaVu fonts are installed) and
+stored in this repository as `entry.png`. In the grader,
+`MAKEFUN_OUTPUT_DIR` is unset and the image is written to
 `/output/entry.png`.
 
 ---
